@@ -4,7 +4,7 @@
 	<sql id="col">
 		t_name AS name,
 		t_id AS id,
-		t_desc AS desc
+		t_desc AS tDesc
 	</sql>
 
 

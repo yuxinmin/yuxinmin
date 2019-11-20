@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yxinmin.zs.dao.NotebookDao">
+	<sql id="col">
+		nb_id AS id,
+		nb_name AS name,
+		u_id AS userId,
+		nbt_id AS notebookTypeId,
+		nb_createtime AS createTime
+	</sql>
+
+    <insert id="add">
+		insert into cn_notebook(nb_id,u_id,nb_name,nbt_id,nb_createtime) values(#{id},#{userId},#{name},#{notebookTypeId},#{createTime})
+	</insert>
+
+	<delete id="delete">
+		delete from cn_notebook where nb_id=#{id}
+	</delete>
+
+	<update id="update">
+		update cn_notebook set nb_name=#{name} where nb_id=#{id}
+	</update>
+	<select id="findBySpecail" resultType="com.yxinmin.zs.entity.Notebook">
+		select <include refid="col"/> from  cn_notebook nb join cn_notebook_type nbt on nb.nbt_id==nbt.t_id where u_id=#{id} and t_name !='normal'
+	</select>
+
+	<select id="findByNormal" resultType="com.yxinmin.zs.entity.Notebook">
+		select <include refid="col"/> from  cn_notebook nb join cn_notebook_type nbt on nb.nbt_id==nbt.t_id where u_id=#{id} and t_name ='normal'
+	</select>
+
+
+	<select id="findByName" resultType="com.yxinmin.zs.entity.Notebook">
+		select <include refid="col"/> from  cn_notebook where u_id=#{userId} and nb_name=#{name}
+	</select>
+</mapper>

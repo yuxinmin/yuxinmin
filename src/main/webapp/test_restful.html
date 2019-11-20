@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+    <script type="text/javascript" src="scripts/common/jquery.min.js"></script>
+    <script>
+        function notebookList() {
+            $.ajax({
+                url:"/notebook.do",
+                method:"get"
+            })
+        }
+        function addNotebook() {
+            $.ajax({
+                url:"/notebook.do",
+                method:"post"
+            })
+        }
+        function updateNotebook() {
+            $.ajax({
+                url:"/notebook.do",
+                method:"put"
+            })
+        }
+        function deletebookList() {
+            $.ajax({
+                url:"/notebook.do",
+                method:"delete"
+            })
+        }
+
+    </script>
+</head>
+<body>
+    <button onclick="notebookList()">获取</button>
+    <button onclick="addNotebook()">添加</button>
+    <button onclick="updateNotebook()">修改</button>
+    <button onclick="deletebookList()">删除</button>
+</body>
+</html>
