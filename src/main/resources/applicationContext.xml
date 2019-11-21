@@ -39,15 +39,12 @@
 
     <tx:annotation-driven transaction-manager="txManager"></tx:annotation-driven>
     <!--mvc拦截器-->
-    <!--<mvc:interceptors>-->
-        <!--<mvc:interceptor>-->
-            <!--<mvc:mapping path="/**"/>-->
-            <!--<mvc:exclude-mapping path="/user/login.do"/>-->
-            <!--<mvc:exclude-mapping path="/user/reg.do"/>-->
-            <!--<mvc:exclude-mapping path="/user/findPassword.do"/>-->
-            <!--<mvc:exclude-mapping path="/user/updatePassword.do"/>-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/user/*"/>
 
-            <!--<bean class="com.yuxinmin.zs.intercptor.LoginIntercptor"/>-->
-        <!--</mvc:interceptor>-->
-    <!--</mvc:interceptors>-->
+            <bean class="com.yxinmin.zs.intercptor.LoginIntercptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

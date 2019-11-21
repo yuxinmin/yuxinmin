@@ -6,6 +6,10 @@ function loadNoteBook(){
 		url:"/notebook.do",
 		method:"get",
 		success:function(data) {
+		    if(data=='fail'){
+		        location.href="login.html";
+		        return;
+            }
 			var special=data['special'];
 			var normal=data['normal'];
 			var list=$('#first_side_right .contacts-list');
@@ -55,6 +59,7 @@ function addNoteBook(){
 		return;
 	}
 	$.ajax({
+
 		url:"/notebook.do",
 		method:"post",
 		data:{name:name},
@@ -86,7 +91,6 @@ function addNoteBook(){
  * 重命名笔记本
  */
 function updateNoteBook(){
-
     var name=$('#input_notebook_rename').val().trim();
     var li=$('#first_side_right .contacts-list li .checked').parent();
     var nb=li.data('notebook')
@@ -100,6 +104,10 @@ function updateNoteBook(){
         method:"post",
         data:{name:name,id:id},
         success:function (data) {
+            if(data=='fail'){
+                location.href="login.html";
+                return;
+            }
             if(data['success']){
                 alert("修改成功");
                 li.html(
@@ -125,7 +133,27 @@ function updateNoteBook(){
  * 删除笔记本
  */
 function deleteNoteBook(){
-	alert("删除笔记本");
+    var li=$('#first_side_right .contacts-list li .checked').parent();
+    var id=li.data('notebook').id;
+    $.ajax({
+        url: "/notebook.do",
+        method: "delete",
+        data: {id: id},
+        success: function (data) {
+            if(data=='fail'){
+                location.href="login.html";
+                return;
+            }
+            if(data=='fail'){
+                location.href="login.html";
+                return;
+            }
+            li.remove();
+            $('#first_side_right .contacts-list li:first').click();
+            alert("删除成功");
+        }
+    })
+
 }
 
 /**
