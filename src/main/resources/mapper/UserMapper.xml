@@ -27,10 +27,10 @@
 	</select>
 
 	<select id="findByNickName" resultType="com.yxinmin.zs.entity.User">
-		select <include refid="col"/> from cn_user where u_name=#{name}
+		select <include refid="col"/> from cn_user where u_nickname=#{nickName}
 	</select>
 
 	<select id="findByName" resultType="com.yxinmin.zs.entity.User">
-		select <include refid="col"/> from cn_user where u_nickname=#{nickName}
+		select <include refid="col"/> from cn_user where u_name=#{name}
 	</select>
 </mapper>

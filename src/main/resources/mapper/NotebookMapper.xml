@@ -21,11 +21,11 @@
 		update cn_notebook set nb_name=#{name} where nb_id=#{id}
 	</update>
 	<select id="findBySpecail" resultType="com.yxinmin.zs.entity.Notebook">
-		select <include refid="col"/> from  cn_notebook nb join cn_notebook_type nbt on nb.nbt_id==nbt.t_id where u_id=#{id} and t_name !='normal'
+		select <include refid="col"/> from  cn_notebook nb join cn_notebook_type nbt on nb.nbt_id=nbt.t_id where u_id=#{id} and t_name !='normal'
 	</select>
 
 	<select id="findByNormal" resultType="com.yxinmin.zs.entity.Notebook">
-		select <include refid="col"/> from  cn_notebook nb join cn_notebook_type nbt on nb.nbt_id==nbt.t_id where u_id=#{id} and t_name ='normal'
+		select <include refid="col"/> from  cn_notebook nb join cn_notebook_type nbt on nb.nbt_id=nbt.t_id where u_id=#{id} and t_name ='normal'
 	</select>
 
 

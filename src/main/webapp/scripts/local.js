@@ -16,12 +16,7 @@ function check_null(s){
 /**********HTML初始化时直接调用的函数**********/
 //获取笔记本列表,edit.html初始化时调用
 function get_nb_list(){
-	loadNormalNoteBook();
-}
-
-//获取特殊笔记本列表,edit.html初始化时调用
-function get_spnb_list(){
-	loadSpecialNoteBook();
+	loadNoteBook();
 }
 
 //获取活动列表,activity.html初始化时调用
