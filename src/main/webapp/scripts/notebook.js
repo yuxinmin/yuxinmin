@@ -86,7 +86,39 @@ function addNoteBook(){
  * 重命名笔记本
  */
 function updateNoteBook(){
-	alert("重命名笔记本");
+
+    var name=$('#input_notebook_rename').val().trim();
+    var li=$('#first_side_right .contacts-list li .checked').parent();
+    var nb=li.data('notebook')
+    var id=nb.id;
+    if(name==null||name.length==0){
+        alert("笔记本名字不能为空");
+        return;
+    }
+    $.ajax({
+        url:"/notebook.do",
+        method:"post",
+        data:{name:name,id:id},
+        success:function (data) {
+            if(data['success']){
+                alert("修改成功");
+                li.html(
+                        '<a class=\'unchecked\'>\n' +
+                        '<i class="fa fa-book" title="笔记本" rel="tooltip-bottom"></i> ' +
+                        name+
+                        '<button type="button" class="btn btn-default btn-xs btn_position btn_delete"><i class="fa fa-times"></i></button>\n' +
+                        '</a>');
+
+                nb.name=name;
+                li.data("notebook",nb);
+                li.click();
+            }else if(data['name_null']){
+                alert("笔记本名字不能为空");
+            }else if(data['name_repeat']){
+                alert("笔记本名字已经存在");
+            }
+        }
+    })
 }
 
 /***
