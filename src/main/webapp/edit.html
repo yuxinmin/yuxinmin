@@ -1,10 +1,25 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
+
 <html>
     <head>
        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>我的笔记</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="x-pjax-version" content="v173">
+		<script type="text/javascript" src="scripts/common/jquery.min.js"></script>
+		<script>
+			$.ajax({
+				url:"/notebook.do",
+				method:"get",
+				async:false,
+				success:function (data) {
+					if(data=="fail"){
+					    location.href="login.html";
+					}
+                }
+			})
+		</script>
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/favico-144-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/favico-114-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/favico-72-precomposed.png">
@@ -100,18 +115,7 @@
 						<div class="chat-contact">
 							<div class="contact-body">
 								<ul class="contacts-list">
-									<li class="online">
-										<a class='checked'>
-											<i class="fa fa-file-text-o" title="online" rel="tooltip-bottom"></i> 使用Java操作符<button type="button" class="btn btn-default btn-xs btn_position btn_slide_down"><i class="fa fa-chevron-down"></i></button>
-										</a>
-										<div class="note_menu" tabindex='-1'>
-											<dl>
-												<dt><button type="button" class="btn btn-default btn-xs btn_move" title='移动至...'><i class="fa fa-random"></i></button></dt>
-												<dt><button type="button" class="btn btn-default btn-xs btn_share" title='分享'><i class="fa fa-sitemap"></i></button></dt>
-												<dt><button type="button" class="btn btn-default btn-xs btn_delete" title='删除'><i class="fa fa-times"></i></button></dt>
-											</dl>
-										</div>
-									</li>
+
 								</ul>
 							</div>
 						</div>
@@ -233,6 +237,7 @@
 					</div>
 				</aside>
 			</div>
+
 			
 			<!-- 预览笔记 -->
 			<div class="col-sm-7" id='pc_part_5' style='display:none;' >
@@ -292,7 +297,6 @@
 				$('#myEditor').width(width-20);
 			};
 		</script>
-        <script type="text/javascript" src="scripts/common/jquery.min.js"></script>
 		<!-- 全局变量&&AJAX&&回调函数&&COOKIE -->
 		<script type="text/javascript" src="scripts/notebook.js"></script>
 		<script type="text/javascript" src="scripts/note.js"></script>

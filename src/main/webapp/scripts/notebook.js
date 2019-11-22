@@ -20,13 +20,13 @@ function loadNoteBook(){
 					case '回收站':
 						$('#rollback_button').data("notebook",nb);
 						break;
-                    case '回收站':
+                    case '收藏':
                         $('#like_button').data("notebook",nb);
                         break;
-                    case '回收站':
+                    case '活动':
                         $('#action_button').data("notebook",nb);
                         break;
-                    case '回收站':
+                    case '默认':
                         $('#first_side_right .contacts-list li:first').data("notebook",nb);
                         break;
 				}
@@ -42,6 +42,7 @@ function loadNoteBook(){
                     '</a>\n' +
                     '</li>');
                 $('#first_side_right .contacts-list li:last').data("notebook",nb);
+                $('#first_side_right .contacts-list li:first').click();
 			}
 
         }
@@ -93,7 +94,7 @@ function addNoteBook(){
 function updateNoteBook(){
     var name=$('#input_notebook_rename').val().trim();
     var li=$('#first_side_right .contacts-list li .checked').parent();
-    var nb=li.data('notebook')
+    var nb=li.data('notebook');
     var id=nb.id;
     if(name==null||name.length==0){
         alert("笔记本名字不能为空");

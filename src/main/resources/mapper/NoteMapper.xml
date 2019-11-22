@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yxinmin.zs.dao.NoteDao">
+	<sql id="col">
+		nb_id AS notebookId,
+		n_id AS id,
+		n_title AS title,
+		n_body AS body,
+		n_modify_time AS modifyTime
+	</sql>
+
+    <insert id="add">
+		insert into cn_note(n_id,n_title,n_modify_time,nb_id) values(#{id},#{title},#{modifyTime},#{notebookId})
+	</insert>
+
+
+
+	<delete id="delete">
+		delete from cn_notebook where n_id=#{id}
+	</delete>
+
+	<delete id="deleteByNotebookId">
+		delete from cn_notebook where nd_id=#{notebookId}
+	</delete>
+	<update id="update">
+		update cn_note set n_title=#{title},n_body=#{body},n_modify_time=#{modifyTime} where n_id=#{id}
+	</update>
+
+
+	<update id="move">
+		update cn_note set nb_id=#{notebookId} where n_id=#{id}
+	</update>
+
+
+	<select id="findByNotebookId" resultType="com.yxinmin.zs.entity.Note">
+		select <include refid="col"/> from  cn_note where nb_id=#{id}
+	</select>
+
+
+
+</mapper>
