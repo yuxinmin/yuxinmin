@@ -27,6 +27,15 @@ public class NotebookController {
         result.put("normal",normal);
         return result;
     }
+
+
+    @GetMapping("/normal")
+    public Object normalMotebookList(HttpSession session){
+        User user= (User) session.getAttribute("user");
+        List<Notebook> normal = notebookService.findNormal(user.getId());
+        return normal;
+    }
+
     @PostMapping
     public Object addNotebook(String name,HttpSession session){
         User user = (User) session.getAttribute("user");
@@ -44,5 +53,6 @@ public class NotebookController {
     public void deleteNotebook(String id){
         notebookService.deleteNotebook(id);
     }
+
 
 }

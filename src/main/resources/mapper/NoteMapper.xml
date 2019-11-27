@@ -6,7 +6,8 @@
 		n_id AS id,
 		n_title AS title,
 		n_body AS body,
-		n_modify_time AS modifyTime
+		n_modify_time AS modifyTime,
+		n_share AS share
 	</sql>
 
     <insert id="add">
@@ -16,14 +17,14 @@
 
 
 	<delete id="delete">
-		delete from cn_notebook where n_id=#{id}
+		delete from cn_note where n_id=#{id}
 	</delete>
 
 	<delete id="deleteByNotebookId">
-		delete from cn_notebook where nd_id=#{notebookId}
+		delete from cn_note where nd_id=#{notebookId}
 	</delete>
 	<update id="update">
-		update cn_note set n_title=#{title},n_body=#{body},n_modify_time=#{modifyTime} where n_id=#{id}
+		update cn_note set n_title=#{title},n_body=#{body},n_modify_time=#{modifyTime},n_share=#{share} where n_id=#{id}
 	</update>
 
 
@@ -34,6 +35,9 @@
 
 	<select id="findByNotebookId" resultType="com.yxinmin.zs.entity.Note">
 		select <include refid="col"/> from  cn_note where nb_id=#{id}
+	</select>
+	<select id="findById" resultType="com.yxinmin.zs.entity.Note">
+		select <include refid="col"/> from  cn_note where n_id=#{id}
 	</select>
 
 

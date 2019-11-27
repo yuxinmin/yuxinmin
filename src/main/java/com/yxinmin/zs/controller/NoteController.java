@@ -27,4 +27,13 @@ public class NoteController {
         noteService.updateNote(note);
         return note;
     }
+    @PutMapping("/move")
+    public void moveNote(Note note){
+        noteService.moveNote(note);
+    }
+
+    @DeleteMapping
+    public void deleteNote(String id){
+        noteService.deleteNote(id);
+    }
 }

@@ -141,12 +141,8 @@ function deleteNoteBook(){
         method: "delete",
         data: {id: id},
         success: function (data) {
-            if(data=='fail'){
-                location.href="login.html";
-                return;
-            }
-            if(data=='fail'){
-                location.href="login.html";
+            if(data=='fail') {
+                location.href = "login.html";
                 return;
             }
             li.remove();
@@ -161,5 +157,20 @@ function deleteNoteBook(){
  * 将笔记本列表放置到select组件中
  */
 function setNoteBookToSelect(){
-	console.log("将笔记本列表放置到select组件中");
+	$.ajax({
+        url:"/notebook/normal.do",
+        method:"get",
+        success:function (data) {
+            if(data=='fail') {
+                location.href = "login.html";
+                return;
+            }
+            var defaultNotebook=$('#first_side_right .contacts-list li:first').data("notebook");
+            $("#moveSelect").append('<option value="'+defaultNotebook.id+'">默认笔记本</option>');
+            for(var i=0;i<data.length;i++){
+                var notebook=data[i];
+                $("#moveSelect").append('<option value="'+notebook.id+'">'+notebook.name+'</option>');
+            }
+        }
+    })
 }

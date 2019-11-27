@@ -159,13 +159,14 @@ $(function(){
     
 	//----确认移动
 	$(document).on('click','#modalBasic_11 .btn.btn-primary.sure',function(){
-		moveNote();
+        var li=$('#second_side_right .contacts-list li .checked').parent();
+        var notebookId= $('#moveSelect').val();
+		moveNote(li,notebookId);
 	});
     
 	//----分享笔记
 	$(document).on("click", "#second_side_right .btn_share", function() {
-		$(this).fadeOut(600);
-		createShareNote();
+		createShareNote(this);
     }),
     
     
@@ -200,7 +201,9 @@ $(function(){
     
 	//----确认恢复
 	$(document).on('click','#modalBasic_3 .btn.btn-primary.sure', function(){
-		moveNote();
+        var notebookId= $('#moveSelect').val();
+        var li=$('#four_side_right .contacts-list li .checked').parent();
+		moveNote(li,notebookId);
 	});
 
 	//----点击回收站删除按钮

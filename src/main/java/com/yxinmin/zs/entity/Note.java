@@ -8,6 +8,16 @@ public class Note {
     private String body;
     private Date modifyTime;
     private String notebookId;
+    private int share;
+
+
+    public int getShare() {
+        return share;
+    }
+
+    public void setShare(int share) {
+        this.share = share;
+    }
 
     public String getId() {
         return id;
